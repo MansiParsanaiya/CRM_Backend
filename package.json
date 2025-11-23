@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "backend",
   "version": "0.0.0",
   "private": true,
@@ -27,5 +28,29 @@
     "socket.io": "4.7.5",
     "ws": "8.17.1",
     "yup": "^1.4.0"
+=======
+  "name": "vijayho-myproject-api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "body-parser": "^1.20.2",
+    "canvas": "^2.11.2",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^16.4.5",
+    "express": "~4.16.1",
+    "jimp": "^0.22.12",
+    "mongodb": "^6.4.0",
+    "mongoose": "^8.2.1",
+    "mongoose-paginate-v2": "^1.8.0",
+    "morgan": "~1.9.1",
+    "nodemailer": "^6.9.13",
+    "nodemon": "^3.1.0"
+>>>>>>> 9f9931e0027de09c1221dcf8d5bb6e7c1d0dffed
   }
 }
