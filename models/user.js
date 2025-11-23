@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   role: { type: String, enum: ['user', 'admin'] },
   isActive: { type: String, enum: ['pending', 'approved'], default: 'pending' },
-  userType: { type: String, enum: ['student', 'employee'], default: null }
+  userType: { type: String, default: null }
 });
 
 userSchema.plugin(mongoosePaginate);
