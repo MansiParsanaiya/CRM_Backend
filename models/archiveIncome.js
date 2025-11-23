@@ -10,6 +10,7 @@ const archiveIncomeSchema = new mongoose.Schema({
     branchId: { type: Number },
     lastEdit: {type : String},
     modeOfPayment: {type : String}
+    
 });
 
 
