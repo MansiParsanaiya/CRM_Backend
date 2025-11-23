@@ -5,11 +5,9 @@
  */
 
 var app = require('../app');
-<<<<<<< HEAD
 var debug = require('debug')('backend:server');
-=======
+
 var debug = require('debug')('vijayho-myproject-api:server');
->>>>>>> 9f9931e0027de09c1221dcf8d5bb6e7c1d0dffed
 var http = require('http');
 
 /**

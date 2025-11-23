@@ -1,38 +1,16 @@
 require('dotenv').config();
 
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
-
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
 
 const connection = require('./connect');
 
-// Routes - from HEAD
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/userRoutes');
-const accountRoutes = require('./routes/accountRoutes');
-const branchRoutes = require('./routes/branchRoutes');
-const studentRoutes = require('./routes/studentRoutes');
-const employeeRoutes = require('./routes/employeeRoutes');
-const feesRoutes = require('./routes/feesRoutes');
-const courseRoutes = require('./routes/courseRoutes');
-const projectRoutes = require('./routes/projectRoutes');
-const taskRoutes = require('./routes/taskRoutes');
-
-// Routes - from second version
-var registerRouter = require('./routes/register');
-var projectRouter2 = require('./routes/project');
-var taskRouter2 = require('./routes/task');
-var nodeRouter = require('./routes/node');
-
 const app = express();
 
+// Middlewares
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
@@ -40,10 +18,40 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Connect to MongoDB
+// Connect to DB
 connection();
 
-// PORT
+// --------------------------------------
+// ROUTES (USE ONLY ONE CLEAN VERSION)
+// --------------------------------------
+
+// Authentication & User
+app.use('/auth', require('./routes/authRoutes'));
+app.use('/users', require('./routes/userRoutes'));
+
+// CRM Modules
+app.use('/accounts', require('./routes/accountRoutes'));
+app.use('/branches', require('./routes/branchRoutes'));
+app.use('/students', require('./routes/studentRoutes'));
+app.use('/employees', require('./routes/employeeRoutes'));
+app.use('/fees', require('./routes/feesRoutes'));
+app.use('/courses', require('./routes/courseRoutes'));
+
+// Projects & Tasks
+app.use('/projects', require('./routes/projectRoutes'));
+app.use('/tasks', require('./routes/taskRoutes'));
+
+// Default routes
+app.use('/', require('./routes/index'));
+app.use('/api', require('./routes/node')); // optional if used
+
+// PORT (bin/www will handle server start)
 const PORT = process.env.PORT || 8000;
 
-// Routes (HEAD version kept as mai
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+
+module.exports = app;
